@@ -1,9 +1,4 @@
 {
   "framework": "nextjs",
-  "regions": ["arn1"],
-  "env": {
-    "NEXT_PUBLIC_APP_URL": {
-      "value": "https://secondheat.no"
-    }
-  }
+  "regions": ["arn1"]
 }
