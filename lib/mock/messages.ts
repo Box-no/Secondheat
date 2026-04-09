@@ -1,0 +1,70 @@
+import { Message } from '@/lib/types'
+
+export const mockMessages: Record<string, Message[]> = {
+  'ord-2': [
+    {
+      id: 'msg-1',
+      orderId: 'ord-2',
+      senderId: 'buyer-1',
+      senderName: 'Sophie',
+      content: 'Hi! I\'m very interested in your leotard. Does it fit true to size?',
+      createdAt: new Date('2024-02-19T10:30:00'),
+    },
+    {
+      id: 'msg-2',
+      orderId: 'ord-2',
+      senderId: '1',
+      senderName: 'Emma',
+      content: 'Hi Sophie! Yes, it fits true to size. I wear a size M and it\'s perfect. Let me know if you have any other questions!',
+      createdAt: new Date('2024-02-19T11:15:00'),
+    },
+    {
+      id: 'msg-3',
+      orderId: 'ord-2',
+      senderId: 'buyer-1',
+      senderName: 'Sophie',
+      content: 'Great! How many times have you worn it?',
+      createdAt: new Date('2024-02-19T13:45:00'),
+    },
+    {
+      id: 'msg-4',
+      orderId: 'ord-2',
+      senderId: '1',
+      senderName: 'Emma',
+      content: 'I\'ve worn it maybe 5-6 times for classes. It\'s been well cared for. No stains or damage.',
+      createdAt: new Date('2024-02-19T14:20:00'),
+    },
+    {
+      id: 'msg-5',
+      orderId: 'ord-2',
+      senderId: 'buyer-1',
+      senderName: 'Sophie',
+      content: 'Perfect! I\'ll buy it. How long does shipping usually take?',
+      createdAt: new Date('2024-02-19T15:00:00'),
+    },
+    {
+      id: 'msg-6',
+      orderId: 'ord-2',
+      senderId: '1',
+      senderName: 'Emma',
+      content: 'Usually 2-3 days with standard Norwegian post. I can ship it out tomorrow!',
+      createdAt: new Date('2024-02-19T15:30:00'),
+    },
+    {
+      id: 'msg-7',
+      orderId: 'ord-2',
+      senderId: 'buyer-1',
+      senderName: 'Sophie',
+      content: 'Wonderful! Thank you so much 💃',
+      createdAt: new Date('2024-02-19T16:00:00'),
+    },
+    {
+      id: 'msg-8',
+      orderId: 'ord-2',
+      senderId: '1',
+      senderName: 'Emma',
+      content: 'You\'re welcome! Hope you enjoy it. See you on the platform!',
+      createdAt: new Date('2024-02-19T16:15:00'),
+    },
+  ],
+}

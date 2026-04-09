@@ -1,0 +1,85 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'dusty-rose': {
+          50: '#faf7f6',
+          100: '#f5f0ed',
+          200: '#e8dcd6',
+          300: '#dac6ba',
+          400: '#c9a899',
+          500: '#b8907d',
+          600: '#a67868',
+          700: '#8d6152',
+          800: '#744d41',
+          900: '#5d3d33',
+          950: '#3c261d',
+        },
+        'heat-orange': {
+          50: '#fff7ed',
+          100: '#ffeed5',
+          200: '#ffdcaa',
+          300: '#ffca7a',
+          400: '#ff9d3d',
+          500: '#ff7f1d',
+          600: '#ff6b00',
+          700: '#ff5400',
+          800: '#dd3800',
+          900: '#bb2d00',
+        },
+        'heat-red': {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+        },
+        'heat-purple': {
+          50: '#faf5ff',
+          100: '#f3e8ff',
+          200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
+          500: '#a855f7',
+          600: '#9333ea',
+          700: '#7e22ce',
+          800: '#6b21a8',
+          900: '#581c87',
+        },
+        'heat-blue': {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+        },
+      },
+      fontFamily: {
+        serif: ['Playfair Display', 'serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+      },
+      backgroundImage: {
+        'heat-gradient': 'linear-gradient(135deg, #ff7f1d 0%, #ef4444 25%, #a855f7 50%, #3b82f6 75%, #ff9d3d 100%)',
+        'heat-gradient-alt': 'linear-gradient(to right, #ff5400, #dc2626, #9333ea, #2563eb)',
+      },
+    },
+  },
+  plugins: [],
+}
+export default config

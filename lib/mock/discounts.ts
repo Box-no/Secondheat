@@ -1,0 +1,40 @@
+import { DiscountCode } from '@/lib/types'
+
+export const mockDiscountCodes: DiscountCode[] = [
+  {
+    id: '1',
+    code: 'DANS2025',
+    type: 'percentage',
+    value: 20,
+    description: '20% rabatt på kjøp',
+    appliesTo: 'purchase',
+    maxUses: 500,
+    usedCount: 87,
+    expiresAt: new Date('2025-12-31'),
+    isActive: true,
+  },
+  {
+    id: '2',
+    code: 'SOMMERFEST',
+    type: 'percentage',
+    value: 15,
+    description: '15% sommerfest-rabatt',
+    appliesTo: 'purchase',
+    maxUses: 200,
+    usedCount: 34,
+    expiresAt: new Date('2025-08-31'),
+    isActive: true,
+  },
+  {
+    id: '3',
+    code: 'DANSEGLEDE',
+    type: 'fixed',
+    value: 75,
+    description: '75 kr rabatt på valgfri vare',
+    appliesTo: 'purchase',
+    maxUses: 100,
+    usedCount: 12,
+    expiresAt: new Date('2025-12-31'),
+    isActive: true,
+  },
+]
