@@ -3,6 +3,7 @@ import { ProductGrid } from '@/components/products/ProductGrid'
 import { getProducts } from '@/lib/data/products'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 export default async function Home() {
   const products = await getProducts()
@@ -60,14 +61,15 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="relative lg:h-96 bg-gradient-to-br from-heat-orange-100 via-heat-red-50 to-heat-purple-100 rounded-3xl flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-            <div className="text-center z-10">
-              <div className="text-8xl mb-4">💃</div>
-              <p className="text-gray-700 font-serif text-xl">
-                Dansetøy går aldri<br />av moten
-              </p>
-            </div>
+          <div className="relative lg:h-96 bg-gray-50 rounded-3xl flex items-center justify-center overflow-hidden">
+            <Image
+              src="/images/logos/secondheat-logo.png"
+              alt="SecondHeat logo"
+              width={300}
+              height={300}
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
       </section>
