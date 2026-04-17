@@ -37,4 +37,15 @@ export const mockDiscountCodes: DiscountCode[] = [
     expiresAt: new Date('2025-12-31'),
     isActive: true,
   },
+  {
+    id: '4',
+    code: 'GRATIS',
+    type: 'percentage',
+    value: 100,
+    description: 'Gratis medlemskap',
+    appliesTo: 'membership',
+    maxUses: 1000,
+    usedCount: 0,
+    isActive: true,
+  },
 ]
