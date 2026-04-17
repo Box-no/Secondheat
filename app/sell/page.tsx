@@ -23,6 +23,10 @@ export default function SellPage() {
     price: '',
     description: '',
     images: [] as string[],
+    waist: '',
+    height: '',
+    deliveryMethod: '',
+    danceStyles: [] as string[],
   })
 
   useEffect(() => {
@@ -46,6 +50,17 @@ export default function SellPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const handleDanceStyleChange = (style: string, checked: boolean) => {
+    setFormData((prev) => ({
+      ...prev,
+      danceStyles: checked
+        ? [...prev.danceStyles, style]
+        : prev.danceStyles.filter((s) => s !== style),
+    }))
+  }
+
+  const showMeasurements = formData.category === 'dress' || formData.category === 'competition_costume'
+
   const handleImagesChange = (urls: string[]) => {
     setFormData((prev) => ({ ...prev, images: urls }))
   }
@@ -67,12 +82,16 @@ export default function SellPage() {
       await createProduct({
         sellerId: user?.id || '',
         title: formData.title,
-        category: formData.category as 'top' | 'bottom' | 'dress' | 'shoes' | 'accessories',
+        category: formData.category as 'top' | 'bottom' | 'dress' | 'shoes' | 'accessories' | 'competition_costume',
         size: formData.size,
         condition: formData.condition as 'new' | 'like_new' | 'good' | 'fair',
         price: parseInt(formData.price),
         description: formData.description,
         images: formData.images,
+        ...(formData.waist ? { waist: parseInt(formData.waist) } : {}),
+        ...(formData.height ? { height: parseInt(formData.height) } : {}),
+        ...(formData.deliveryMethod ? { deliveryMethod: formData.deliveryMethod as 'send' | 'deliver_yourself' } : {}),
+        ...(formData.danceStyles.length > 0 ? { danceStyles: formData.danceStyles } : {}),
       })
 
       setSubmitted(true)
@@ -148,6 +167,7 @@ export default function SellPage() {
               <option value="top">Topp</option>
               <option value="bottom">Bunn</option>
               <option value="dress">Kjole</option>
+              <option value="competition_costume">Konkurransekostyme</option>
               <option value="shoes">Sko</option>
               <option value="accessories">Tilbehør</option>
             </select>
@@ -166,6 +186,95 @@ export default function SellPage() {
               placeholder="F.eks. M eller 37"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-heat-orange-500 focus:border-transparent outline-none transition"
             />
+          </div>
+
+          {showMeasurements && (
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">
+                Mål (valgfritt)
+              </label>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs text-gray-600 mb-1">Midje (cm)</label>
+                  <input
+                    type="number"
+                    name="waist"
+                    value={formData.waist}
+                    onChange={handleInputChange}
+                    min="0"
+                    placeholder="F.eks. 68"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-heat-orange-500 focus:border-transparent outline-none transition"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-600 mb-1">Høyde (cm)</label>
+                  <input
+                    type="number"
+                    name="height"
+                    value={formData.height}
+                    onChange={handleInputChange}
+                    min="0"
+                    placeholder="F.eks. 165"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-heat-orange-500 focus:border-transparent outline-none transition"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-3">
+              Dansestil – brukt til (valgfritt, velg alle som passer)
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { value: 'disco_freestyle', label: 'Disco / Freestyle' },
+                { value: 'slow', label: 'Slow' },
+                { value: 'konkurranse', label: 'Konkurranse' },
+                { value: 'sportsdans', label: 'Sportsdans' },
+              ].map(({ value, label }) => (
+                <label key={value} className="flex items-center gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.danceStyles.includes(value)}
+                    onChange={(e) => handleDanceStyleChange(value, e.target.checked)}
+                    className="w-4 h-4 accent-heat-orange-600 flex-shrink-0"
+                  />
+                  <span className="text-sm text-gray-700">{label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-3">
+              Levering
+            </label>
+            <div className="space-y-3">
+              {[
+                { value: 'send', label: 'Send', description: 'Sendes med post til kjøper' },
+                { value: 'deliver_yourself', label: 'Lever selv', description: 'Møtes og overleveres personlig' },
+              ].map(({ value, label, description }) => (
+                <label key={value} className={`flex items-center gap-4 p-4 border-2 rounded-xl cursor-pointer transition ${
+                  formData.deliveryMethod === value
+                    ? 'border-heat-orange-500 bg-heat-orange-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}>
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value={value}
+                    checked={formData.deliveryMethod === value}
+                    onChange={handleInputChange}
+                    className="accent-heat-orange-600"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">{label}</p>
+                    <p className="text-xs text-gray-500">{description}</p>
+                  </div>
+                </label>
+              ))}
+            </div>
           </div>
 
           <div>

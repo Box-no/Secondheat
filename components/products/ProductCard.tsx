@@ -21,6 +21,7 @@ export function ProductCard({ product, sellerName }: ProductCardProps) {
     top: product.size,
     bottom: product.size,
     dress: product.size,
+    competition_costume: product.size,
     shoes: product.size,
     accessories: 'One Size',
   }[product.category]

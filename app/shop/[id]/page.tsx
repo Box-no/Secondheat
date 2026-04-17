@@ -87,6 +87,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     top: 'Topp',
     bottom: 'Bunn',
     dress: 'Kjole',
+    competition_costume: 'Konkurransekostyme',
     shoes: 'Sko',
     accessories: 'Tilbehør',
   }
@@ -225,6 +226,54 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   <p className="text-2xl font-semibold text-gray-900">{conditionLabel[product.condition]}</p>
                 </div>
               </div>
+
+              {(product.waist || product.height) && (
+                <div className="border-t border-gray-200 pt-6 grid grid-cols-2 gap-8">
+                  {product.waist && (
+                    <div>
+                      <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Midje</p>
+                      <p className="text-xl font-semibold text-gray-900">{product.waist} cm</p>
+                    </div>
+                  )}
+                  {product.height && (
+                    <div>
+                      <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Høyde</p>
+                      <p className="text-xl font-semibold text-gray-900">{product.height} cm</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {product.danceStyles && product.danceStyles.length > 0 && (
+                <div className="border-t border-gray-200 pt-6">
+                  <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-3">Brukt til</p>
+                  <div className="flex flex-wrap gap-2">
+                    {product.danceStyles.map((style) => {
+                      const styleLabels: Record<string, string> = {
+                        disco_freestyle: 'Disco / Freestyle',
+                        slow: 'Slow',
+                        konkurranse: 'Konkurranse',
+                        sportsdans: 'Sportsdans',
+                      }
+                      return (
+                        <span key={style} className="px-3 py-1 bg-heat-orange-100 text-heat-orange-800 rounded-full text-xs font-medium">
+                          {styleLabels[style] || style}
+                        </span>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {product.deliveryMethod && (
+                <div className="border-t border-gray-200 pt-6">
+                  <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Levering</p>
+                  <p className="text-base font-semibold text-gray-900">
+                    {product.deliveryMethod === 'send' ? '📦 Sendes med post' : '🤝 Leveres personlig'}
+                  </p>
+                </div>
+              )}
+
               <div className="border-t border-gray-200 pt-6">
                 <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-3">Status</p>
                 <span
@@ -374,7 +423,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                     <PaymentSelector selected={paymentMethod} onChange={setPaymentMethod} />
 
                     <Button className="w-full bg-heat-orange-600 hover:bg-heat-orange-700 text-white py-3 font-semibold rounded-xl">
-                      Betal {finalPrice} kr via {paymentMethod === 'klarna' ? 'Klarna' : paymentMethod === 'vipps' ? 'Vipps' : 'kort'}
+                      Betal {finalPrice} kr via {paymentMethod === 'klarna' ? 'Klarna' : paymentMethod === 'invoice' ? 'faktura/bank' : 'kort'}
                     </Button>
                     <button
                       onClick={() => setShowPayment(false)}

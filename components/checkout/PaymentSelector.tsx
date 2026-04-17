@@ -1,6 +1,9 @@
 'use client'
 
-export type PaymentMethod = 'klarna' | 'vipps' | 'card'
+import { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+
+export type PaymentMethod = 'klarna' | 'invoice' | 'card'
 
 interface PaymentSelectorProps {
   selected: PaymentMethod
@@ -15,10 +18,10 @@ const methods: { id: PaymentMethod; label: string; description: string; logo: st
     logo: '🩷',
   },
   {
-    id: 'vipps',
-    label: 'Vipps',
-    description: 'Betal enkelt med Vipps',
-    logo: '🟠',
+    id: 'invoice',
+    label: 'Faktura / Bank',
+    description: 'Betal via faktura eller bankoverføring',
+    logo: '🏦',
   },
   {
     id: 'card',
@@ -28,7 +31,17 @@ const methods: { id: PaymentMethod; label: string; description: string; logo: st
   },
 ]
 
+const KLARNA_TERMS = `Vilkår for Klarna-betaling
+
+Betaling skjer via Klarna. Med Klarna kan kjøper velge å betale med en gang, via faktura eller delbetaling.
+
+Ved bruk av Klarna inngår kunden en egen avtale direkte med Klarna. secondheat.no håndterer ikke betaling direkte og er ikke ansvarlig for Klarnas tjenester eller betingelser.
+
+Se Klarnas fullstendige vilkår på klarna.com/no/vilkar`
+
 export function PaymentSelector({ selected, onChange }: PaymentSelectorProps) {
+  const [showKlarnaTerms, setShowKlarnaTerms] = useState(false)
+
   return (
     <div className="space-y-3">
       <label className="block text-sm font-medium text-gray-900">Betalingsmetode</label>
@@ -66,11 +79,31 @@ export function PaymentSelector({ selected, onChange }: PaymentSelectorProps) {
         ))}
       </div>
 
-      {/* TODO: Replace placeholders with real integrations
-        Klarna:  import { KlarnaSDK } from '@klarna/klarna-js-sdk' — https://developers.klarna.com
-        Vipps:   POST /api/vipps/init — https://developer.vippsmobilepay.com
-        Card:    import { loadStripe } from '@stripe/stripe-js' — https://stripe.com/docs
-      */}
+      {/* Klarna terms accordion */}
+      {selected === 'klarna' && (
+        <div className="border border-gray-200 rounded-xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowKlarnaTerms(!showKlarnaTerms)}
+            className="flex items-center justify-between w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 transition text-left"
+          >
+            <span className="text-xs font-medium text-gray-700">Vilkår for Klarna-betaling</span>
+            {showKlarnaTerms ? (
+              <ChevronUp size={14} className="text-gray-500 flex-shrink-0" />
+            ) : (
+              <ChevronDown size={14} className="text-gray-500 flex-shrink-0" />
+            )}
+          </button>
+          {showKlarnaTerms && (
+            <div className="px-4 py-4 bg-white border-t border-gray-200">
+              <pre className="text-xs text-gray-600 whitespace-pre-wrap font-sans leading-relaxed">
+                {KLARNA_TERMS}
+              </pre>
+            </div>
+          )}
+        </div>
+      )}
+
       <p className="text-xs text-gray-400 mt-1">
         Alle betalinger er kryptert og sikre.
       </p>

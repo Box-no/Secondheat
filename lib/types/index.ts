@@ -32,11 +32,15 @@ export interface Product {
   description: string
   price: number
   size: string
-  category: 'top' | 'bottom' | 'dress' | 'shoes' | 'accessories'
+  category: 'top' | 'bottom' | 'dress' | 'shoes' | 'accessories' | 'competition_costume'
   condition: 'new' | 'like_new' | 'good' | 'fair'
   images: string[]
   status: 'pending' | 'approved' | 'rejected' | 'sold'
   createdAt: Date
+  waist?: number
+  height?: number
+  deliveryMethod?: 'send' | 'deliver_yourself'
+  danceStyles?: string[]
 }
 
 export interface Seller {

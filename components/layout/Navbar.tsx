@@ -30,7 +30,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-0 z-50 border-b border-gray-800 bg-black shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between items-center">
           {/* Logo */}
@@ -49,7 +49,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/how-it-works"
-              className="text-sm font-medium text-gray-700 hover:text-heat-orange-600 transition"
+              className="text-sm font-medium text-white/80 hover:text-white transition"
             >
               Slik fungerer det
             </Link>
@@ -58,20 +58,20 @@ export function Navbar() {
               <>
                 <Link
                   href="/shop"
-                  className="text-sm font-medium text-gray-700 hover:text-heat-orange-600 transition"
+                  className="text-sm font-medium text-white/80 hover:text-white transition"
                 >
                   Butikk
                 </Link>
                 <Link
                   href="/sell"
-                  className="text-sm font-medium text-gray-700 hover:text-heat-orange-600 transition"
+                  className="text-sm font-medium text-white/80 hover:text-white transition"
                 >
                   Selg
                 </Link>
                 {user.role === 'admin' && (
                   <Link
                     href="/admin"
-                    className="text-sm font-medium text-gray-700 hover:text-heat-orange-600 transition"
+                    className="text-sm font-medium text-white/80 hover:text-white transition"
                   >
                     Admin
                   </Link>
@@ -90,7 +90,7 @@ export function Navbar() {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-heat-orange-600 transition select-none">
+                  <button className="flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white transition select-none">
                     {user.name}
                     <ChevronDown
                       size={14}
@@ -127,7 +127,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="text-sm font-medium text-gray-700 hover:text-heat-orange-600"
+                  className="text-sm font-medium text-white/80 hover:text-white"
                 >
                   Logg inn
                 </Link>
@@ -143,7 +143,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="md:hidden text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -152,10 +152,10 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden pb-6 space-y-4 border-t border-gray-100 pt-4">
+          <div className="md:hidden pb-6 space-y-4 border-t border-gray-800 pt-4">
             <Link
               href="/how-it-works"
-              className="block text-sm font-medium text-gray-700 hover:text-heat-orange-600 px-2"
+              className="block text-sm font-medium text-white/80 hover:text-white px-2"
             >
               Slik fungerer det
             </Link>
@@ -163,25 +163,25 @@ export function Navbar() {
               <>
                 <Link
                   href="/shop"
-                  className="block text-sm font-medium text-gray-700 hover:text-heat-orange-600 px-2"
+                  className="block text-sm font-medium text-white/80 hover:text-white px-2"
                 >
                   Butikk
                 </Link>
                 <Link
                   href="/sell"
-                  className="block text-sm font-medium text-gray-700 hover:text-heat-orange-600 px-2"
+                  className="block text-sm font-medium text-white/80 hover:text-white px-2"
                 >
                   Selg
                 </Link>
                 <Link
                   href="/dashboard/buyer"
-                  className="block text-sm font-medium text-gray-700 hover:text-heat-orange-600 px-2"
+                  className="block text-sm font-medium text-white/80 hover:text-white px-2"
                 >
                   Oversikt
                 </Link>
                 <button
                   onClick={handleSignOut}
-                  className="block text-sm font-medium text-red-600 hover:text-red-700 px-2 text-left"
+                  className="block text-sm font-medium text-red-400 hover:text-red-300 px-2 text-left"
                 >
                   Logg ut
                 </button>
@@ -191,7 +191,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="block text-sm font-medium text-gray-700 hover:text-heat-orange-600 px-2"
+                  className="block text-sm font-medium text-white/80 hover:text-white px-2"
                 >
                   Logg inn
                 </Link>
