@@ -2,6 +2,10 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Kjøps- og salgsbetingelser — SecondHeat',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function TermsPage() {
